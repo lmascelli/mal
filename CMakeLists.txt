@@ -11,6 +11,6 @@ set(SOURCES
   linenoise.hpp
   main.cpp)
 
-list(TRANSFORM SOURCES PREPEND "src/")
+list(TRANSFORM SOURCES PREPEND "${STEP}/")
 
 add_executable(mylisp ${SOURCES})
