@@ -7,7 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 set(SOURCES
-  mylisp.cpp mylisp.h
+  types.cpp     types.h
+  repl.cpp      repl.h
+  reader.cpp    reader.h
   linenoise.hpp
   main.cpp)
 

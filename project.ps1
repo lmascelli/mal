@@ -3,7 +3,6 @@ function build($step) {
     Push-Location "build"
     cmake .. -G"Ninja" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DSTEP="$step"
     cmake --build .
-    Copy-Item -Path "compile_commands.json" -Destination ".." -Force -ErrorAction Ignore
     Pop-Location
   }
 
