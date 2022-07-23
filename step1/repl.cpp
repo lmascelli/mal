@@ -11,32 +11,11 @@ MyLispType *Null = &_Null;
 
 //-------------------- FUNCTIONS ------------------
 MyLispType *READ(string input) {
-  Reader r(input);
-  MyLispType *root = r.read_token();
-  return root;
+  return Null;
 }
 
 string EVAL(MyLispType *input) {
   string ret;
-  switch (input->type) {
-  case MyLispType::SIGNAL: {
-    MyLispSignal *signal = static_cast<MyLispSignal *>(input);
-    if (input) {
-      switch (signal->_signal) {
-      case MyLispSignal::_QUIT:
-        running = false;
-      }
-    }
-  } break;
-  case MyLispType::LIST: {
-    return "List";
-  } break;
-  case MyLispType::STRING: {
-    return static_cast<MyLispString *>(input)->_str;
-  } break;
-  default:
-    ret = "Null";
-  }
 //  delete input;
   return ret;
 }
