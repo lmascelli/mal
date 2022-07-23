@@ -1,23 +1,22 @@
 #pragma once
 #include <string>
 #include <string_view>
-#include "types.h"
-using std::string, std::string_view;
+#include <vector>
+using std::string, std::string_view, std::vector;
 
 namespace mylisp{
 
 class Reader {
 public:
-  Reader(string &input);
+  Reader();
   string_view next();
   string_view peek();
-  MyLispType* read_token();
-  MyLispList* read_list();
-  bool end();
 
 private:
-  string &_input;
-  string_view current;
-  size_t index = 0, t_index = 0;
+  friend void add_token(string_view& s);
+  vector<string> tokens;
+  int position = 0;
 };
+
+Reader read_str();
 }
