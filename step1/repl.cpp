@@ -1,4 +1,5 @@
 #include "repl.h"
+#include "printer.h"
 #include "reader.h"
 #include <iostream>
 using std::cout, std::endl;
@@ -6,17 +7,19 @@ using std::cout, std::endl;
 namespace mylisp {
 //-------------------- GLOBALS --------------------
 bool running = true;
-MyLispType _Null = {};
-MyLispType *Null = &_Null;
 
 //-------------------- FUNCTIONS ------------------
 MyLispType *READ(string input) {
-  return Null;
+  Reader *r = tokenize(input);
+  r->reset();
+  MyLispType* ast = read_form(r);
+  return ast;
 }
 
 string EVAL(MyLispType *input) {
-  string ret;
-//  delete input;
+  string ret = "";
+  ret = print_element(input);
+  //  delete input;
   return ret;
 }
 

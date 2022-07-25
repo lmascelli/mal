@@ -6,9 +6,12 @@ namespace mylisp {
 class MyLispType {
 public:
   enum MyLispTYPE {
+    NULL_TYPE,
     SIGNAL,
     LIST,
     STRING,
+    NUMBER,
+    SYMBOL,
   };
   MyLispTYPE type;
 };
@@ -37,4 +40,26 @@ public:
   MyLispString(std::string str);
 };
 
+class MyLispNumber : public MyLispType {
+public:
+  MyLispNumber(double number);
+  double _number;
+};
+
+class MyLispSymbol : public MyLispType {
+  public:
+    enum MyLispSYMBOLS {
+      NIL,
+      LOGICAL_TRUE,
+      LOGICAL_FALSE,
+      BRACKET_OPEN,
+      BRACKET_CLOSE,
+      KEYWORD,
+    };
+
+    MyLispSymbol(MyLispSYMBOLS symbol = KEYWORD, std::string keyword = "");
+
+    MyLispSYMBOLS _symbol;
+    std::string _keyword;
+};
 } // namespace mylisp

@@ -10,6 +10,7 @@ set(SOURCES
   types.cpp     types.h
   repl.cpp      repl.h
   reader.cpp    reader.h
+  printer.cpp   printer.h
   linenoise.hpp
   main.cpp)
 
