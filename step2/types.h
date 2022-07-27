@@ -2,6 +2,17 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <functional>
+
+#define ML_TYPEP(X) static_cast<MyLispType *>(X)
+#define ML_SIGNALP(X) static_cast<MyLispSignal *>(X)
+#define ML_SYMBOLP(X) static_cast<MyLispSymbol *>(X)
+#define ML_FUNCTIONP(X) static_cast<MyLispFunction *>(X)
+#define ML_NUMBERP(X) static_cast<MyLispNumber *>(X)
+#define ML_STRINGP(X) static_cast<MyLispString *>(X)
+#define ML_LISTP(X) static_cast<MyLispList *>(X)
+#define ML_VECTORP(X) static_cast<MyLispVector *>(X)
+#define ML_HASHMAPP(X) static_cast<MyLispHashMap *>(X)
 
 namespace mylisp {
 class MyLispType {
@@ -10,6 +21,7 @@ public:
     NULL_TYPE,
     SIGNAL,
     SYMBOL,
+    FUNCTION,
     NUMBER,
     STRING,
     LIST,
@@ -18,6 +30,9 @@ public:
   };
   MyLispTYPE type;
 };
+
+extern bool running;
+extern MyLispType *Null;
 
 class MyLispSignal : public MyLispType {
 public:
@@ -50,6 +65,12 @@ public:
 
   MyLispSYMBOLS _symbol;
   std::string _keyword;
+};
+
+class MyLispFunction : public MyLispType {
+public:
+  MyLispFunction(std::function<MyLispType *(MyLispType *)> fun);
+  std::function<MyLispType *(MyLispType *)> _fun;
 };
 
 class MyLispNumber : public MyLispType {

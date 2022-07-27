@@ -17,6 +17,11 @@ MyLispSymbol::MyLispSymbol(MyLispSYMBOLS symbol, std::string keyword) {
   _keyword = keyword;
 }
 
+MyLispFunction::MyLispFunction(std::function<MyLispType *(MyLispType *)> fun) {
+  type = MyLispType::FUNCTION;
+  _fun = fun;
+}
+
 MyLispNumber::MyLispNumber(double number) {
   type = MyLispType::NUMBER;
   _number = number;

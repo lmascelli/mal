@@ -208,7 +208,6 @@ MyLispType *read_hashmap(Reader *r) {
   int i = 0;
   while (not correct) {
     MyLispType *el = read_form(r);
-    cout << i << " " << r->peek() << endl;
     std::cin.get();
     if (key) {
       key = false;
@@ -239,7 +238,6 @@ MyLispType *read_hashmap(Reader *r) {
       }
     }
     if (not key) {
-      cout << key_s << " " << r->peek() << endl;
       ret->map.insert({key_s, value_p});
       key = true;
     }

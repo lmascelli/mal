@@ -11,6 +11,7 @@ set(SOURCES
   repl.cpp      repl.h
   reader.cpp    reader.h
   printer.cpp   printer.h
+  evaluer.cpp   evaluer.h
   linenoise.hpp
   main.cpp)
 
