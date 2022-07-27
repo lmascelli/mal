@@ -82,6 +82,20 @@ eval_ast(MyLispType *ast,
     }
     return ret;
   }
+  case MyLispType::VECTOR: {
+    MyLispVector *ret = new MyLispVector, *vector = ML_VECTORP(ast);
+    for (auto el: vector->elements) {
+      ret->elements.push_back(EVAL(el, repl_env));
+    }
+    return ret;
+  }
+  case MyLispType::HASHMAP: {
+    MyLispHashMap *ret = new MyLispHashMap, *hashmap = ML_HASHMAPP(ast);
+    for (auto el: hashmap->map) {
+      ret->map.insert(std::pair(el.first, EVAL(el.second, repl_env)));
+    }
+    return ret;
+  }
   default:
     return ast;
   }
